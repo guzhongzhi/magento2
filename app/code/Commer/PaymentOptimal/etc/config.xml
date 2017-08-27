@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <optimal>
+                <label>Optimal</label>
+                <active>1</active>
+                <model>Commer\PaymentOptimal\Model\Optimal</model>
+                <order_status>processing</order_status>
+                <title>Optimal</title>
+                <allowspecific>0</allowspecific>
+                <group>optimal</group>
+                <can_authorize_vault>1</can_authorize_vault>
+            </optimal>
+
+        </payment>
+    </default>
+</config>

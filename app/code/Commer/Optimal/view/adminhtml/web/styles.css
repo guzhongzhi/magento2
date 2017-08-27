@@ -1,0 +1,8 @@
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+.optimal-section .heading {background: url("images/optimal_logo.png") no-repeat 0 50% / 18rem auto; padding-left: 20rem;}
+.optimal-section .button-container {float: right;}
+.optimal-section .config-alt {background: url("images/optimal_allinone.png") no-repeat scroll 0 0 / 100% auto; height: 28px; margin: 0.5rem 0 0; width: 230px;}

@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="optimal_section" sortOrder="6" showInDefault="0" showInWebsite="0" showInStore="0">
+                <group id="optimal" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Optimal</label>
+                    <comment><![CDATA[optimal.]]></comment>
+                    <fieldset_css>complex optimal-section</fieldset_css>
+                    <frontend_model>Magento\Paypal\Block\Adminhtml\System\Config\Fieldset\Payment</frontend_model>
+                    <attribute type="activity_path">payment/optimal/active</attribute>
+                    <attribute type="displayIn">recommended_solutions</attribute>
+                    <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable this Solution</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/optimal/active</config_path>
+                    </field>
+                    <field id="optimal_cc_vault_active" translate="label" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Vault Enabled</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/optimal_cc_vault/active</config_path>
+                    </field>
+                    <group id="optimal_required" translate="label" showInDefault="1" showInWebsite="1" sortOrder="5">
+                        <label>Basic optimal Settings</label>
+                        <attribute type="expanded">1</attribute>
+                        <frontend_model>Magento\Config\Block\System\Config\Form\Fieldset</frontend_model>
+                        <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Title</label>
+                            <config_path>payment/optimal/title</config_path>
+                        </field>                        
+                        <field id="debug" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Debug</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/optimal/debug</config_path>
+                        </field>
+                        <field id="environment" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Environment</label>
+                            <source_model>Commer\Optimal\Model\Adminhtml\Source\Environment</source_model>
+                            <config_path>payment/optimal/environment</config_path>
+                        </field>
+                        <field id="payment_action" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Payment Action</label>
+                            <source_model>Commer\Optimal\Model\Adminhtml\Source\PaymentAction</source_model>
+                            <config_path>payment/optimal/payment_action</config_path>
+                        </field>
+                        <field id="merchant_id" translate="label" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Merchant ID</label>
+                            <config_path>payment/optimal/merchant_id</config_path>
+                        </field>
+                        
+                        <field id="username" translate="label" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>User name</label>
+                            <config_path>payment/optimal/username</config_path>
+                        </field>
+                        
+                        <field id="password" translate="label" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Password</label>
+                            <config_path>payment/optimal/password</config_path>
+                        </field>
+                        
+                        
+                        <field id="public_key" translate="label" type="obscure" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Public Key</label>
+                            <config_path>payment/optimal/public_key</config_path>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                        </field>
+                        <field id="private_key" translate="label" type="obscure" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Private Key</label>
+                            <config_path>payment/optimal/private_key</config_path>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                        </field>
+                        <field id="allowspecific" translate="label" type="allowspecific" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Payment from Applicable Countries</label>
+                            <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                            <config_path>payment/optimal/allowspecific</config_path>
+                        </field>
+                        <field id="specificcountry" translate="label" type="multiselect" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Payment from Specific Countries</label>
+                            <source_model>Commer\Optimal\Model\Adminhtml\System\Config\Country</source_model>
+                            <can_be_empty>1</can_be_empty>
+                            <config_path>payment/optimal/specificcountry</config_path>
+                        </field>
+                        <field id="useccv" translate="label" type="select" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>CVV Verification</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Be sure to Enable AVS and/or CVV in Your optimal Account in Settings/Processing Section.</comment>
+                            <config_path>payment/optimal/useccv</config_path>
+                        </field>
+                        <field id="cctypes" translate="label" type="multiselect" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Credit Card Types</label>
+                            <source_model>Commer\Optimal\Model\Adminhtml\Source\CcType</source_model>
+                            <config_path>payment/optimal/cctypes</config_path>
+                        </field>
+                    </group>
+                    <group id="optimal_advanced" translate="label" showInDefault="1" showInWebsite="1" sortOrder="20">
+                        <label>Advanced optimal Settings</label>
+                        <frontend_model>Magento\Config\Block\System\Config\Form\Fieldset</frontend_model>
+                        <field id="optimal_cc_vault_title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Vault Title</label>
+                            <config_path>payment/optimal_cc_vault/title</config_path>
+                        </field>
+                        <field id="merchant_account_id" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Merchant Account ID</label>
+                            <comment>If you don't specify the merchant account to use to process a transaction, optimal will process it using your default merchant account.</comment>
+                            <config_path>payment/optimal/merchant_account_id</config_path>
+                        </field>
+                        <field id="fraudprotection" translate="label" type="select" sortOrder="34" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Advanced Fraud Protection</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Be sure to Enable Advanced Fraud Protection in Your optimal Account in Settings/Processing Section</comment>
+                            <config_path>payment/optimal/fraudprotection</config_path>
+                        </field>
+                        <field id="kount_id" translate="label" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Kount Merchant ID</label>
+                            <comment><![CDATA[Used for direct fraud tool integration. Make sure you also contact <a href="mailto:accounts@optimalpayments.com">accounts@optimalpayments.com</a> to setup your Kount account.]]></comment>
+                            <depends>
+                                <field id="fraudprotection">1</field>
+                            </depends>
+                            <config_path>payment/optimal/kount_id</config_path>
+                        </field>
+                        
+                        <field id="sort_order" translate="label" type="text" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Sort Order</label>
+                            <frontend_class>validate-number</frontend_class>
+                            <config_path>payment/optimal/sort_order</config_path>
+                        </field>
+                    </group> 
+                    
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

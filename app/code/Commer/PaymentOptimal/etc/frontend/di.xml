@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="optimal_config_provider" xsi:type="object">Commer\PaymentOptimal\Model\Ui\ConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Payment\Model\CcConfigProvider">
+        <arguments>
+            <argument name="methodCodes" xsi:type="array">
+                <item name="optimal" xsi:type="const">Commer\PaymentOptimal\Model\Optimal::METHOD_CODE</item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <type name="Commer\PaymentOptimal\Model\Optimal" shared="true">
+        <arguments>
+            <argument name="session" xsi:type="object">Magento\Checkout\Model\Session</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="OptimalIframeCcConfigProvider" type="Magento\Payment\Model\CcConfigProvider">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">Commer\PaymentOptimal\Model\Optimal::METHOD_CODE</argument>
+        </arguments>
+    </virtualType>
+
+</config>

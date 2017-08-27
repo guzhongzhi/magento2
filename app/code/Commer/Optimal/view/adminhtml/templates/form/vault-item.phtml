@@ -1,0 +1,40 @@
+<?php
+use Magento\Vault\Model\Ui\TokenUiComponentProviderInterface;
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Framework\View\Element\Template $block */
+$data = $block->getData();
+$details = $block->getData(TokenUiComponentProviderInterface::COMPONENT_DETAILS);
+
+
+$details = $block->getData(TokenUiComponentProviderInterface::COMPONENT_DETAILS);
+
+$publicHash = $data["publicHash"];
+
+$icon = $block->getData('icons')[$details['type']];
+$id = $block->escapeHtml($block->getData('id'));
+?>
+<div data-mage-init='{
+        "Commer_Optimal/js/vault": {
+            "container": "payment_<?= /* @noEscape */ $id ?>",
+            "publicHash": "<?= $block->escapeHtml($block->getData(TokenUiComponentProviderInterface::COMPONENT_PUBLIC_HASH)) ?>",
+            "code": "<?= $block->escapeHtml($block->getData('code')) ?>",
+            "nonceUrl": "<?= $block->escapeUrl($block->getData('nonceUrl')) ?>"
+        }
+    }' id="payment_<?= /* @noEscape */ $id ?>" class="admin__field">
+    <div class="admin__field-control control optimal-saved-item">
+        <input type="radio" id="token_switcher_<?= /* @noEscape */ $id ?>" value="<?= $block->escapeHtml($block->getData(TokenUiComponentProviderInterface::COMPONENT_PUBLIC_HASH)) ?>" name="payment[public_hash]"/>
+        <img src="<?= $block->escapeUrl($icon['url']) ?>"
+             width="<?= $block->escapeHtml($icon['width']) ?>"
+             height="<?= $block->escapeHtml($icon['height']) ?>"
+             class="payment-icon" >
+        <span><?= $block->escapeHtml(__('ending')) ?></span>
+        <span><?= $block->escapeHtml($details['maskedCC']) ?></span>
+        (<span><?= $block->escapeHtml(__('expires')) ?></span>:
+        <span><?= $block->escapeHtml($details['expirationDate']) ?></span>)
+    </div>
+</div>
